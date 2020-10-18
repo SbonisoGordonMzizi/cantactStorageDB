@@ -7,9 +7,10 @@ import  com.techcreate.views.NewAccountInput;
 import javax.naming.directory.SearchResult;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.techcreate.logging.DbLogger;
 
 public class DbController {
-
+    DbLogger dbLogger = new DbLogger();
     public void bdControlLogin(int codeValue){
 
         switch (codeValue){
@@ -23,6 +24,7 @@ public class DbController {
                     dbNewAccount();
                 }else if(dbRecords.size() == 1){
                     System.out.println("___________ONLY ONE USER CAN EXIST___________");
+                    dbLogger.dbLogging("___________ONLY ONE USER CAN EXIST___________");
                     System.out.println("__________ONE USER ALREADY EXISTING__________\n");
                     login();
                 }
@@ -69,13 +71,16 @@ public class DbController {
             if ((userPasswdFromDb.get("Password")).equals(userNameAndPasswd.get(1)) && (userPasswdFromDb.get("UserName").equals(userNameAndPasswd.get(0)))) {
                 loginStatus = true;
                  System.out.println("_____________LOGIN SUCCESSFULLY______________");
+                dbLogger.dbLogging("_____________LOGIN SUCCESSFULLY______________");
                 main.mainView();
             }
             if (loginStatus == false) {
                 System.out.println("__________________LOGIN FAILED____________________");
+                dbLogger.dbLogging("__________________LOGIN FAILED____________________");
             }
         }else if(dbRecords.size() ==0){
                 System.out.println("_______________ACCOUNT DO NOT EXIST_______________");
+                dbLogger.dbLogging("_______________ACCOUNT DO NOT EXIST_______________");
             dbNewAccount();
         }
 
@@ -108,8 +113,10 @@ public class DbController {
         status = dbUpdate.dbFieldsUpdate(userUpdate);
         if(status > 0){
             System.out.println("_____________RECORD UPDATED_________________");
+            dbLogger.dbLogging("_____________RECORD UPDATED_________________");
         }else if(status == 0){
             System.out.println("___________RECORD DO NOT EXIST______________");
+            dbLogger.dbLogging("___________RECORD DO NOT EXIST______________");
         }
     }
     private void dbDelete(){
@@ -122,8 +129,10 @@ public class DbController {
         status = dbDetete.dbDelete(userNameToDelete);
         if(status > 0){
             System.out.println("_____________RECORD DELETED_________________");
+            dbLogger.dbLogging("_____________RECORD DELETED_________________");
         }else if(status == 0){
             System.out.println("___________RECORD DO NOT EXIST______________");
+            dbLogger.dbLogging("___________RECORD DO NOT EXIST______________");
         }
     }
     private void dbSearch(){

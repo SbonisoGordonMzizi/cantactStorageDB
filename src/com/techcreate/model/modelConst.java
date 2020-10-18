@@ -1,6 +1,6 @@
 package com.techcreate.model;
 
-enum modelConst {
+public enum modelConst {
     //Path Constructor Constants
     DATABASENAME("dataStorage.db"),
     DATABASEDIR("/.db/"),

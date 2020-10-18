@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-
+import com.techcreate.logging.DbLogger;
 public class DbDetete {
+    DbLogger dbLogger = new DbLogger();
     public int dbDelete(HashMap<String,String> searchName) {
         DbPathConstractor dbPathConstractor = new DbPathConstractor();
         int status = -1;
@@ -17,7 +18,8 @@ public class DbDetete {
 
              statement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("ERROR!!!!  >>  "+e.getMessage());
+            dbLogger.dbLogging("ERROR!!!!  >>  "+e.getMessage());
         }
      return status;
     }

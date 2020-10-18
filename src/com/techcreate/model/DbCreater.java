@@ -1,9 +1,11 @@
 package com.techcreate.model;
 
+import com.techcreate.logging.DbLogger;
+
 import java.sql.*;
 
 public class DbCreater {
-
+    DbLogger dbLogger = new DbLogger();
     public boolean dbcreate(){
         DbPathConstractor dbPathConstractor = new DbPathConstractor();
         int sqlUpdateStatus = 0;
@@ -15,6 +17,7 @@ public class DbCreater {
             statement.close();
         }catch (SQLException e){
             System.out.println("ERROR!!!!  >>  "+e.getMessage());
+            dbLogger.dbLogging("ERROR!!!!  >>  "+e.getMessage());
         }
      return true;
     }

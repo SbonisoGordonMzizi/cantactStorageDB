@@ -1,17 +1,20 @@
 package com.techcreate.views;
 
+import com.techcreate.logging.DbLogger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class UserAddView {
-
+    DbLogger dbLogger = new DbLogger();
     HashMap<String,String> userInputData = new HashMap<>();
     public HashMap<String,String> addUser(){
         Scanner scanner = new Scanner(System.in);
         String option = "";
 
         System.out.println("______________ADD USER CONTACT_______________");
+        dbLogger.dbLogging("______________ADD USER CONTACT_______________");
         System.out.println("_____________________________________________\n");
 
         System.out.println("<<>>              Required               <<>>");

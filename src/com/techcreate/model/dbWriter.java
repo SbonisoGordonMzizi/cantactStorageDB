@@ -3,10 +3,12 @@ package com.techcreate.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.techcreate.logging.DbLogger;
 
 import com.techcreate.controller.DbController;
 
 public class dbWriter {
+    DbLogger dbLogger = new DbLogger();
     public void dbWrite(int codeValue, HashMap<String,String> userData) {
        // DbController dbController = new DbController();
 
@@ -80,7 +82,8 @@ public class dbWriter {
             }
             statement.close();
         } catch (SQLException e) {
-            System.out.println("ERROR!!!!  >>  " + e.getMessage());
+            System.out.println("ERROR!!!!  >>  "+e.getMessage());
+            dbLogger.dbLogging("ERROR!!!!  >>  "+e.getMessage());
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.techcreate.model;
 
+import com.techcreate.logging.DbLogger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,6 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 public class DbUpdate {
+    DbLogger dbLogger = new DbLogger();
     public int dbFieldsUpdate(HashMap<String,String> fieldsData){
         DbPathConstractor dbPathConstractor = new DbPathConstractor();
         int status = -1;
@@ -55,8 +58,8 @@ public class DbUpdate {
             }
             statement.close();
         } catch (SQLException e) {
-            //System.out.println(e.getMessage());
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            dbLogger.dbLogging(e.getMessage());
         }
         return status;
     }

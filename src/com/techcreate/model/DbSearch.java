@@ -2,8 +2,9 @@ package com.techcreate.model;
 
 import java.sql.*;
 import java.util.HashMap;
-
+import com.techcreate.logging.DbLogger;
 public class DbSearch {
+    DbLogger dbLogger = new DbLogger();
     public HashMap<String, String> dbSearch(HashMap<String,String> searchName){
         DbPathConstractor dbPathConstractor = new DbPathConstractor();
         HashMap<String,String> dbRecord = new HashMap<>();
@@ -46,7 +47,8 @@ public class DbSearch {
             result.close();
             statement.close();
         }catch(SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println("ERROR!!!!  >>  "+e.getMessage());
+            dbLogger.dbLogging("ERROR!!!!  >>  "+e.getMessage());
         }
         return dbRecord;
     }

@@ -3,9 +3,11 @@ package com.techcreate.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.techcreate.logging.DbLogger;
+
 public class DbReader {
     ArrayList<HashMap<String,String>> dbRecords = new ArrayList<>();
-
+    DbLogger dbLogger = new DbLogger();
     private void dataBaseRead(int codeValue) {
         DbPathConstractor dbPathConstractor = new DbPathConstractor();
         ResultSet result = null;
@@ -60,7 +62,8 @@ public class DbReader {
             result.close();
             statement.close();
         } catch (SQLException e) {
-            System.out.println("ERROR!!!!  >>  " + e.getMessage());
+            System.out.println("ERROR!!!!  >>  "+e.getMessage());
+            dbLogger.dbLogging("ERROR!!!!  >>  "+e.getMessage());
         }
 
     }
