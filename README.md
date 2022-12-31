@@ -18,12 +18,14 @@ To use this application, clone the repository and open it in Visual Studio. Buil
 Java 8 or higher
 ```
 
+
 # Notes
 ```
-The application stores contact information in a database.
+The application stores contact information in a file called "contacts.txt" in the root directory of the project.
 The file is formatted as follows: [Name],[Phone],[Email] with each contact separated by a new line.
 The search function only searches for matches in the name field.
 ```
+
 
 
 
